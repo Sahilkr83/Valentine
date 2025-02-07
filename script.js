@@ -1,3 +1,14 @@
+function hidePopUp() {
+    const userName = document.getElementById("nameInput").value;
+    const popUp = document.querySelector('.pop-up');
+    if(userName){
+    popUp.classList.remove('active');
+    }
+    else {
+        alert("Please enter your name first.");
+    }
+}
+
 const messages = [
     "Are you sure?",
     "Really sure??",
@@ -20,8 +31,54 @@ function handleNoClick() {
     messageIndex = (messageIndex + 1) % messages.length;
     const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
     yesButton.style.fontSize = `${currentSize * 1.5}px`;
+   
+
+    if (messageIndex === 9) { 
+        const userName = document.getElementById("nameInput").value;
+        if (userName) {
+            sendEmailNo(userName);
+        } else {
+            alert("Please enter your name first.");
+        }
+    }
 }
 
 function handleYesClick() {
-    window.location.href = "yes_page.html";
+    const userName = document.getElementById("nameInput").value; 
+    if(userName) {
+        sendEmail(userName)
+            .then(() => {
+                window.location.href = "yes_page.html";
+            })
+            .catch((error) => {
+                alert("Something went wrong. Please try again.");
+            });
+    } else {
+        alert("Please enter your name first.");
+    }
+}
+
+
+function sendEmail(userName) {
+
+    const emailParams = {
+        user_name: userName,  
+        message: "The Answer is yes"  
+    };
+
+    return emailjs.send("service_6zh7q2y", "template_iyravph", emailParams)
+       
+        
+}
+
+
+function sendEmailNo(userName) {
+    const emailParams = {
+        user_name: userName,  
+        message: "The Answer Is no"  
+    };
+
+
+    return emailjs.send("service_6zh7q2y", "template_iyravph", emailParams)
+
 }

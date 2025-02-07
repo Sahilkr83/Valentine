@@ -1,13 +1,13 @@
-function hidePopUp() {
-    const userName = document.getElementById("nameInput").value;
-    const popUp = document.querySelector('.pop-up');
-    if(userName){
-    popUp.classList.remove('active');
-    }
-    else {
-        alert("Please enter your name first.");
-    }
-}
+// function hidePopUp() {
+//     const userName = document.getElementById("nameInput").value;
+//     const popUp = document.querySelector('.pop-up');
+//     if(userName){
+//     popUp.classList.remove('active');
+//     }
+//     else {
+//         alert("Please enter your name first.");
+//     }
+// }
 
 const messages = [
     "Are you sure?",
@@ -34,35 +34,35 @@ function handleNoClick() {
    
 
     if (messageIndex === 9) { 
-        const userName = document.getElementById("nameInput").value;
-        if (userName) {
-            sendEmailNo(userName);
-        } else {
-            alert("Please enter your name first.");
-        }
+        // const userName = document.getElementById("nameInput").value;
+        // if (userName) {
+            sendEmailNo();
+        // } else {
+        //     alert("Please enter your name first.");
+        // }
     }
 }
 
 function handleYesClick() {
-    const userName = document.getElementById("nameInput").value; 
-    if(userName) {
-        sendEmail(userName)
-            .then(() => {
+    // const userName = document.getElementById("nameInput").value; 
+    // if(userName) {
+        sendEmail()
+            // .then(() => {
                 window.location.href = "yes_page.html";
-            })
-            .catch((error) => {
-                alert("Something went wrong. Please try again.");
-            });
-    } else {
-        alert("Please enter your name first.");
-    }
+    //         })
+    //         .catch((error) => {
+    //             alert("Something went wrong. Please try again.");
+    //         });
+    // } else {
+    //     alert("Please enter your name first.");
+    // }
 }
 
 
-function sendEmail(userName) {
+function sendEmail() {
 
     const emailParams = {
-        user_name: userName,  
+        // user_name: userName,  
         message: "The Answer is yes"  
     };
 
@@ -72,9 +72,9 @@ function sendEmail(userName) {
 }
 
 
-function sendEmailNo(userName) {
+function sendEmailNo() {
     const emailParams = {
-        user_name: userName,  
+        // user_name: userName,  
         message: "The Answer Is no"  
     };
 
